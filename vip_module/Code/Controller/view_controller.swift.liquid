@@ -1,0 +1,56 @@
+//
+//  {{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+protocol {{ module_info.name }}DisplayLogic: class {
+
+}
+
+final class {{ module_info.name }}ViewController: UIViewController {
+    
+    // MARK: - Internal Properties
+    var state: State {
+        didSet {
+            updateState()
+        }
+    }
+
+    // MARK: - Private Properties
+    private let interactor: {{ module_info.name }}BusinessLogic
+    
+    // MARK: - Views
+    private lazy var mainView: {{ module_info.name }}View = {
+        let view = {{ module_info.name }}View(delegate: self)
+        return view
+    }()
+    
+    // MARK: - Life Cycle
+    override func loadView() {
+        super.loadView()
+        
+        view = mainView
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    // MARK: - Initialization
+    init(interactor: {{ module_info.name }}BusinessLogic, state: State) {
+        self.interactor = interactor
+        self.state = state
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        return nil
+    }
+    
+}
